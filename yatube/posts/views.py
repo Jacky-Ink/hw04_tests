@@ -12,7 +12,7 @@ User = get_user_model()
 
 def index(request: HttpRequest) -> HttpResponse:
     """Модуль отвечающий за главную страницу"""
-    post_list = Post.objects.all()
+    post_list = Post.objects.get_queryset().order_by('id')
     paginator = Paginator(post_list, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -74,7 +74,7 @@ def post_create(request: HttpRequest) -> HttpResponse:
         post = form.save(commit=False)
         post.author = request.user
         post.save()
-        return redirect('posts:profile', username=request.user.username)
+        return redirect('posts:profile', username=post.author)
     return render(request, 'posts/create_post.html', {'form': form})
 
 
