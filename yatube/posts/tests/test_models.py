@@ -10,15 +10,15 @@ class PostModelTests(TestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.user = User.objects.create_user(username='auth')
+        cls.user = User.objects.create_user(username='')
         cls.group = Group.objects.create(
-            title='Тестовая группа',
+            title='test',
             slug='test_slug',
-            description='Тестовое описание',
+            description='test',
         )
         cls.post = Post.objects.create(
             author=cls.user,
-            text='Текст поста',
+            text='test',
         )
 
     def test_models_have_correct_object_names(self):

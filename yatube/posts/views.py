@@ -12,7 +12,7 @@ User = get_user_model()
 
 def index(request: HttpRequest) -> HttpResponse:
     """Модуль отвечающий за главную страницу"""
-    post_list = Post.objects.get_queryset().order_by('id')
+    post_list = Post.objects.all()
     paginator = Paginator(post_list, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)

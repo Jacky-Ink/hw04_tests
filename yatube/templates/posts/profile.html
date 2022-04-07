@@ -13,7 +13,7 @@
           <ul>
             <li>
               Автор: {{ author.get_full_name }}
-              <a href="{% url 'posts:profile' post.author.username %}">все посты пользователя</a>
+              <a href="{% url 'posts:profile' post.author.username %}">Все посты пользователя</a>
             </li>
             {% if post.group %}
             <li>
@@ -25,7 +25,7 @@
             </li>
           </ul>
           <p>
-            {{ post.text }}
+            {{ post.text|linebreaksbr }}
           </p>
           <a href="{% url 'posts:post_detail' post.id %}"><u>Подробная информация </u></a>
         </article>       

@@ -188,36 +188,3 @@ class PostViewsTests(TestCase):
         self.assertIsInstance(response.context['form'], PostForm)
         self.assertTrue(response.context['is_edit'])
         self.assertIsInstance(response.context['is_edit'], bool)
-
-    # def test_new_post_in_pages(self):
-    #     """Проверка появления вновь созданного поста c указанием
-    #     группы на страницах index, group_posts и profile.
-    #     """
-    #     self.author_client.post(
-    #         reverse('posts:post_create'),
-    #         data=self.form_data
-    #     )
-    #     for name_page in self.name_page_list:
-    #         with self.subTest(name_page=name_page):
-    #             response = self.author_client.get(name_page)
-    #             self.assertEqual(
-    #                 str(response.context['page_obj'].object_list[0]),
-    #                 self.form_data['text'][:15]
-    #             )
-
-    # def test_no_new_post_in_other_group(self):
-    #     """Проверка отсутствия вновь созданного поста c указанием
-    #     группы на странице group_posts другой группы.
-    #     """
-    #     self.author_client.post(
-    #         reverse('posts:post_create'),
-    #         data=self.form_data
-    #     )
-    #     response = self.guest_client.get(
-    #         reverse('posts:group_list',
-    #                 kwargs={'slug': self.group_2.slug}
-    #                 )
-    #     )
-    #     context_posts_list = response.context['page_obj'].object_list
-    #     new_post = Post.objects.get(text=self.form_data['text'])
-    #     self.assertFalse(new_post in context_posts_list)
